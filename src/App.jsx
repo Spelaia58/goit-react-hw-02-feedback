@@ -1,8 +1,8 @@
 import React from "react";
-import Controls from "./Feedbacks";
-import Statistics from "./Value";
+import Statistics from "./components/Statistics";
+import FeedbackOptions from "./components/FeedbacksOptions";
 
-class FeedbackCounter extends React.Component {
+class App extends React.Component {
   static defaultProps = {
     initialGood: 0,
     initialNeutral: 0,
@@ -44,7 +44,7 @@ class FeedbackCounter extends React.Component {
   render() {
     return (
       <div>
-        <Controls
+        <FeedbackOptions
           onIncrementGood={this.hendleIncrementGood}
           onIncrementNeutral={this.hendleIncrementNeutral}
           onIncrementBad={this.hendleIncrementBad}
@@ -61,5 +61,4 @@ class FeedbackCounter extends React.Component {
     );
   }
 }
-
-export default FeedbackCounter;
+export default App;

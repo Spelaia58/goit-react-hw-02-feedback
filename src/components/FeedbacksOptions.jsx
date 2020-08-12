@@ -1,10 +1,9 @@
 import React from "react";
 
-const Controls = ({
+const FeedbackOptions = ({
   onIncrementGood,
   onIncrementNeutral,
   onIncrementBad,
-  total,
 }) => (
   <>
     <h1>Please leave feedback</h1>
@@ -19,4 +18,4 @@ const Controls = ({
     </button>
   </>
 );
-export default Controls;
+export default FeedbackOptions;
