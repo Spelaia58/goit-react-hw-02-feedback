@@ -1,6 +1,6 @@
 import React from "react";
 import Controls from "./Feedbacks";
-import Values from "./Value";
+import Statistics from "./Value";
 
 class FeedbackCounter extends React.Component {
   static defaultProps = {
@@ -13,6 +13,7 @@ class FeedbackCounter extends React.Component {
     neutral: this.props.initialNeutral,
     bad: this.props.initialBad,
   };
+  countTotal = 0;
 
   hendleIncrementGood = () => {
     this.setState((prevState) => ({
@@ -29,18 +30,17 @@ class FeedbackCounter extends React.Component {
       bad: prevState.bad + 1,
     }));
   };
+  countTotalFeedback = (values) => {
+    this.countTotal = values.reduce((acc, value) => acc + value, 0);
 
-  countTotalFeedback = (sum) => {
-    const values = Object.values.sum;
-    let totalSum = 0;
-    for (const value of values) {
-      totalSum += value;
-    }
-    return totalSum;
+    return this.countTotal;
   };
 
-  countPositiveFeedbackPercentage = () => {};
+  countPositiveFeedbackPercentage() {
+    const positiveValue = this.state.good;
 
+    return Math.round((positiveValue * 100) / this.countTotal) || 0;
+  }
   render() {
     return (
       <div>
@@ -50,11 +50,12 @@ class FeedbackCounter extends React.Component {
           onIncrementBad={this.hendleIncrementBad}
         />
 
-        <Values
+        <Statistics
           good={this.state.good}
           neutral={this.state.neutral}
           bad={this.state.bad}
-          total={this.countTotalFeedback}
+          total={this.countTotalFeedback(Object.values(this.state))}
+          positivePercentage={this.countPositiveFeedbackPercentage()}
         />
       </div>
     );
