@@ -2,7 +2,6 @@ import React from "react";
 
 const Statistics = ({ good, neutral, bad, total, positivePercentage }) => (
   <>
-    <h2>Statistics</h2>
     <ul>
       <li>good:{good}</li>
       <li>neutral:{neutral}</li>
